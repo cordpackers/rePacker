@@ -1,0 +1,6 @@
+appData/*
+node_modules/*
+input/*
+output/*
+packAsTarBR/*
+installer_info.json
