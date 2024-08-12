@@ -1,5 +1,5 @@
 {
-  "name": "rePacker",
+  "name": "repacker",
   "version": "1.0.0",
   "description": "",
   "exports": "./src/index.js",
