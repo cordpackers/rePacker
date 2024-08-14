@@ -1,11 +1,13 @@
 import fs from "fs";
-import tar from "tar";
+import path from "path";
 import fse from 'fs-extra'
 import glob from "glob";
 
 import { calculate } from "./calculate.js";
 
-const packFolder = "./packAsTarBR";
+const rootFolder = path.join(import.meta.dirname, "..")
+const packFolder = path.join(rootFolder, "packAsTarBr");
+const filesFolder = path.join(packFolder, "files")
 
 export async function pack(src) {
 
@@ -16,15 +18,16 @@ export async function pack(src) {
     fs.mkdirSync(packFolder)
   }
 
-  fs.mkdirSync(`${packFolder}/files/`)
+  fs.mkdirSync(filesFolder)
 
-  fse.copySync(src, `${packFolder}/files/`)
+  fse.copySync(src, filesFolder)
 
-  if (fs.existsSync(`${packFolder}/files/Squirrel.exe`)) {
-    fs.rmSync(`${packFolder}/files/Squirrel.exe`)
+  if (fs.existsSync(path.join(filesFolder, "Squirrel.exe"))) {
+    fs.rmSync(path.join(filesFolder, "Squirrel.exe"))
   }
 
-  const files = glob.sync(`${packFolder}/files/**`, {
+  const files = glob.sync("**", {
+    cwd: path.join(filesFolder).replace(/\\/g, "\\\\"),
     realpath: true,
     nodir: true,
     dot: true,
@@ -33,7 +36,7 @@ export async function pack(src) {
 
   const json = calculate(files)
 
-  fs.writeFileSync(`${packFolder}/delta_manifest.json`, json, {
+  fs.writeFileSync(path.join(packFolder, "delta_manifest.json"), json, {
     flag: "w+",
     encoding: "utf-8",
   });
