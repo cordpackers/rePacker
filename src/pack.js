@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import fse from 'fs-extra'
-import glob from "glob";
+import {glob} from "glob";
 
 import { calculate } from "./calculate.js";
 
