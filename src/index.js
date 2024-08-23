@@ -1,4 +1,4 @@
-import electronInstaller from "@electron/packager";
+import electronInstaller from "electron-winstaller";
 import packager from "@electron/packager";
 import fs from "fs-extra";
 import path from "path";
@@ -86,7 +86,7 @@ db.prepare(
 db.close();
 
 try {
-  await electronInstaller({
+  await electronInstaller.createWindowsInstaller({
     appDirectory: windowsUnpackedFolder,
     outputDirectory: path.join(outputFolder, "packed", "win32"),
     authors: installer_info.authors,
