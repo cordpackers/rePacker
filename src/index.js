@@ -1,5 +1,5 @@
-import electronInstaller from "electron-winstaller";
-import packager from "electron-packager";
+import electronInstaller from "@electron/packager";
+import packager from "@electron/packager";
 import fs from "fs-extra";
 import path from "path";
 import Database from "better-sqlite3";
