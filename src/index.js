@@ -86,7 +86,7 @@ db.prepare(
 db.close();
 
 try {
-  await electronInstaller.createWindowsInstaller({
+  await electronInstaller({
     appDirectory: windowsUnpackedFolder,
     outputDirectory: path.join(outputFolder, "packed", "win32"),
     authors: installer_info.authors,

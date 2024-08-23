@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import fse from 'fs-extra'
-import {glob} from "glob";
+import { globSync } from 'glob'
 
 import { calculate } from "./calculate.js";
 
@@ -26,7 +26,7 @@ export async function pack(src) {
     fs.rmSync(path.join(filesFolder, "Squirrel.exe"))
   }
 
-  const files = glob.sync("**", {
+  const files = globSync("**", {
     cwd: path.join(filesFolder).replace(/\\/g, "\\\\"),
     realpath: true,
     nodir: true,
